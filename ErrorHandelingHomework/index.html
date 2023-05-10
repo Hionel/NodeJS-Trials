@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Server Rating</title>
+		<link rel="stylesheet" href="./css/style.css" />
+	</head>
+	<body>
+		<section class="rating__form__container">
+			<form action="post" class="form__container flexColumn" id="form">
+				<input type="text" placeholder="Fullname" />
+				<input type="number" placeholder="Age" min="18" max="65" />
+				<input
+					type="number"
+					placeholder="This server rating"
+					min="1"
+					max="10"
+				/>
+				<textarea
+					placeholder="Additional Comments"
+					cols="30"
+					rows="10"
+				></textarea>
+				<button type="submit">Submit form</button>
+			</form>
+		</section>
+		<main class="ratings__container">{%RatingsList%}</main>
+	</body>
+</html>
