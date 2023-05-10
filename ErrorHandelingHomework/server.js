@@ -35,14 +35,14 @@ const server = http.createServer((req, res) => {
 				res.write(cssData);
 				res.end();
 			}
-			// if (req.url.match(/.js$/)) {
-			// 	const jsFilePath = "./form.js";
-			// 	const jsData = fs.readFileSync(jsFilePath, "utf-8");
-			// 	res.writeHead(200, { "Content-Type": "text/javascript" });
-			// 	res.write(jsData);
-			// 	res.end();
-			// }
-			if (!req.url.match(/.css$/)) {
+			if (req.url.match(/.js$/)) {
+				const jsFilePath = "./form.js";
+				const jsData = fs.readFileSync(jsFilePath, "utf-8");
+				res.writeHead(200, { "Content-Type": "text/javascript" });
+				res.write(jsData);
+				res.end();
+			}
+			if (!req.url.match(/.css$/) || !req.url.match(/.js$/)) {
 				let output;
 				const ratingsDir = "./ratings";
 				let template = fs.readFileSync(indexName, "utf-8");
