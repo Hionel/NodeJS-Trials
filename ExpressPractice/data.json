@@ -1,1 +1,16 @@
-[{"id":0,"firstname":"Tiberiu","lastname":"Radu","age":32,"team":"pokemon"},{"id":2,"firstname":"Horia","lastname":"Onel","age":25,"team":"Gangster"}]
+[
+	{
+		"id": 0,
+		"firstname": "Tiberiu",
+		"lastname": "Radu",
+		"age": 32,
+		"team": "pokemon"
+	},
+	{
+		"id": 2,
+		"firstname": "Horia",
+		"lastname": "Onel",
+		"age": 25,
+		"team": "Gangster"
+	}
+]

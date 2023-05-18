@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri =
-	"mongodb+srv://hionel:<password>@onel.d0j2ciy.mongodb.net/?retryWrites=true&w=majority";
+	"mongodb+srv://hionel:3iOtMMhv2AoijzFE@ngcommerce.yft8zvu.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -20,8 +20,8 @@ async function run() {
 				console.log("Logged in");
 			});
 	});
-	const db = client.db("Onel");
-	const collection = db.collection("test");
+	const db = client.db("Mongo");
+	const collection = db.collection("users");
 	const me = {
 		fullname: "Onel Horia",
 		age: 24,
