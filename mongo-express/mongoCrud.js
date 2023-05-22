@@ -32,9 +32,43 @@ const getFilteredData = async (
 	let response = await collection.find(filter).sort(sortingFilter).toArray();
 	return response;
 };
+
+const getFilteredDataWithLimit = async (
+	dbParam,
+	collectionParam,
+	filter,
+	limit
+) => {
+	const database = client.db(dbParam);
+	const collection = database.collection(collectionParam);
+	let response = await collection.find(filter).limit(limit).toArray();
+	return response;
+};
+
+const deleteOneDataEntry = async (dbParam, collectionParam, filter) => {
+	const database = client.db(dbParam);
+	const collection = database.collection(collectionParam);
+	return await collection.deleteOne(filter);
+};
+
+const deleteMany = async (dbParam, collectionParam, filter) => {
+	const database = client.db(dbParam);
+	const collection = database.collection(collectionParam);
+	return await collection.deleteMany(filter);
+};
+
+const updateOne = async (dbParam, collectionParam, query, newValues) => {
+	const database = client.db(dbParam);
+	const collection = database.collection(collectionParam);
+	return await collection.updateOne(query, newValues);
+};
 module.exports = {
 	insertOne,
 	insertMany,
 	getAllData,
 	getFilteredData,
+	getFilteredDataWithLimit,
+	deleteOneDataEntry,
+	deleteMany,
+	updateOne,
 };
