@@ -12,8 +12,10 @@ mongoose.connect(
 		useUnifiedTopology: true,
 	}
 );
-let fetchCountries = fetch("https://restcountries.com/v3.1/name/Romania").then(
+let fetchCountries = fetch("	https://api.first.org/data/v1/countries").then(
 	(response) => {
+		console.log(response.ok);
+		console.log(response.status);
 		if (!response.ok) {
 			console.log("Error while fetching data");
 		}
@@ -21,21 +23,22 @@ let fetchCountries = fetch("https://restcountries.com/v3.1/name/Romania").then(
 	}
 );
 const postData = async (req, res) => {
-	const data = await fetchCountries;
-	console.log(data);
-	const formattedData = new Countries({
-		name: data[0].name.common,
-		status: data[0].status,
-		capital: [...data[0].capital],
-	});
-	formattedData
-		.save()
-		.then((response) => {
-			res.status(200).send(response);
-		})
-		.catch((error) => {
-			res.status(400).send(error);
+	const countriesAPI = await fetchCountries;
+	for (let data of Object.values(countriesAPI.data)) {
+		const formattedData = new Countries({
+			country: data.country,
+			region: data.region,
 		});
+		formattedData
+			.save()
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				return res.status(400).send(error.message);
+			});
+	}
+	res.status(200).send("Succesfully inserted all api data in mongo");
 };
 countriesRouter.post("/postCountries", postData);
 
