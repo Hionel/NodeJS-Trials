@@ -12,32 +12,32 @@ mongoose.connect(
 		useUnifiedTopology: true,
 	}
 );
-let fetchCountries = fetch("	https://api.first.org/data/v1/countries").then(
-	(response) => {
-		console.log(response.ok);
-		console.log(response.status);
-		if (!response.ok) {
-			console.log("Error while fetching data");
-		}
-		return response.json();
-	}
-);
+// let fetchCountries = fetch("	https://api.first.org/data/v1/countries").then(
+// 	(response) => {
+// 		console.log(response.ok);
+// 		console.log(response.status);
+// 		if (!response.ok) {
+// 			console.log("Error while fetching data");
+// 		}
+// 		return response.json();
+// 	}
+// );
 const postData = async (req, res) => {
-	const countriesAPI = await fetchCountries;
-	for (let data of Object.values(countriesAPI.data)) {
-		const formattedData = new Countries({
-			country: data.country,
-			region: data.region,
-		});
-		formattedData
-			.save()
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				return res.status(400).send(error.message);
-			});
-	}
+	// const countriesAPI = await fetchCountries;
+	// for (let data of Object.values(countriesAPI.data)) {
+	// 	const formattedData = new Countries({
+	// 		country: data.country,
+	// 		region: data.region,
+	// 	});
+	// 	formattedData
+	// 		.save()
+	// 		.then((response) => {
+	// 			console.log(response);
+	// 		})
+	// 		.catch((error) => {
+	// 			return res.status(400).send(error.message);
+	// 		});
+	// }
 	res.status(200).send("Succesfully inserted all api data in mongo");
 };
 countriesRouter.post("/postCountries", postData);

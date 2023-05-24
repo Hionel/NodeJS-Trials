@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongoosePaginate = require("mongoose-paginate");
 
 let UserSchema = new Schema({
-	name: {
+	fullname: {
 		type: String,
 		require: [true, "A user must have a name..."],
 		trim: true,
@@ -13,5 +14,5 @@ let UserSchema = new Schema({
 	job: String,
 	dateHired: Date,
 });
-
+UserSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model("Users", UserSchema);
